@@ -8,6 +8,16 @@ type EditProps={
     setIsOpen: (value: boolean) => void;
     setIsDropdownOpen: (value: boolean) => void;
 }
+type Category = "To Do" | "In Progress" | "Done" | "Timeout";
+
+type Task = {
+  _id: string;
+  title: string;
+  description: string;
+  priority: "Low" | "Medium" | "High";
+  category: Category;
+  deadline: string;
+};
 
 const EditTask: React.FC<EditProps> = ({ _id,isOpen, setIsOpen ,setIsDropdownOpen }) => {
     const {setTasks}= useTask()
@@ -49,19 +59,27 @@ const EditTask: React.FC<EditProps> = ({ _id,isOpen, setIsOpen ,setIsDropdownOpe
         }, 3000);
     
         setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-              task._id === _id ? { ...task, title, description, deadline,priority } : task
-            )
-          );
+          prevTasks.map((task) =>
+            task._id === _id
+              ? { ...task, title, description, deadline, priority }
+              : task
+          ) as Task[]
+        );
       } else {
         toast.error(data.message,{position:"top-center"});
       }
     } catch (error) {
-      toast.error("Failed to submit the task",{position:"top-center"});
+      console.error("Error submitting task:", error);
+      if (error instanceof Error) {
+        toast.error(`Failed to submit the task: ${error.message}`, { position: "top-center" });
+      } else {
+        toast.error("Failed to submit the task", { position: "top-center" });
+      }
     }
+    
   };
 
-  
+
 
 
   useEffect(() => {

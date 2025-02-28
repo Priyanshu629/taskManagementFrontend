@@ -10,7 +10,16 @@ type IdProp = {
   dropDownIsOpen: boolean;
   setDropDownIsOpen: (value: boolean) => void;
 };
+type Category = "To Do" | "In Progress" | "Done" | "Timeout";
 
+type Task = {
+  _id: string;
+  title: string;
+  description: string;
+  priority: "Low" | "Medium" | "High";
+  category: Category;
+  deadline: string;
+};
 const Dropdown: React.FC<IdProp> = ({ _id, dropDownIsOpen, setDropDownIsOpen }) => {
   const { setTasks,selectedCategory } = useTask();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -43,7 +52,7 @@ const Dropdown: React.FC<IdProp> = ({ _id, dropDownIsOpen, setDropDownIsOpen }) 
         setTasks((prevTasks) =>
           prevTasks.map((task) =>
             task._id === _id ? { ...task, category } : task
-          )
+          ) as Task[]
         );
         
        }
