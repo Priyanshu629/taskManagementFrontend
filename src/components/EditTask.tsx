@@ -96,6 +96,7 @@ const EditTask: React.FC<EditProps> = ({ _id,isOpen, setIsOpen ,setIsDropdownOpe
         setDescription(data.task.description);
         const deadline = new Date(data.task.deadline).toISOString().split("T")[0]
         setDeadline(deadline);
+        setPriority(data.task.priority)
       } catch (error) {
         console.error("Error fetching tasks:", error);
       }
@@ -153,7 +154,7 @@ const EditTask: React.FC<EditProps> = ({ _id,isOpen, setIsOpen ,setIsDropdownOpe
         </div>
         <div className="my-2 text-lg ">
           <label className="font-bold my-4">Priority:(optional)</label>
-          <select className="italic p-2" value={priority} onChange={(e)=>setPriority(e.target.value)}>
+          <select className="italic p-2 border-[1px]" value={priority} onChange={(e)=>setPriority(e.target.value)}>
 
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>

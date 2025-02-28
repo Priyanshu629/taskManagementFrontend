@@ -39,6 +39,7 @@ const TaskForm: React.FC<isOpenProps> = ({ isOpen, setIsOpen }) => {
         setTitle("");
         setDescription("");
         setDeadline("");
+        setPriority("");
         setTimeout(() => {
           setIsOpen(false); 
         }, 2000);
@@ -101,7 +102,7 @@ const TaskForm: React.FC<isOpenProps> = ({ isOpen, setIsOpen }) => {
 
         <div className="my-2 text-lg">
           <label className="font-bold my-4">Priority:(optional)</label>
-          <select value={priority} onChange={(e)=>setPriority(e.target.value)}>
+          <select className="italic p-2 border-[1px]" value={priority} onChange={(e)=>setPriority(e.target.value)}>
 
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
