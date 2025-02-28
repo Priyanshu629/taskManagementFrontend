@@ -90,9 +90,10 @@ const TaskForm: React.FC<isOpenProps> = ({ isOpen, setIsOpen }) => {
           ></textarea>
         </div>
 
-        <div className="my-2 text-lg">
+        <div className="my-2 text-lg ">
           <label className="font-bold my-4">Deadline: </label>
           <input
+           className="border-[1px]"
             type="date"
             min={new Date().toISOString().split("T")[0]}
             value={deadline}
