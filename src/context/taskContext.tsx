@@ -44,7 +44,8 @@ const [taskAdded,setTaskAdded]=useState<boolean>(false)
         const data = await response.json();
         setTasks(data.tasks);
       } catch (error) {
-        console.error("Error fetching tasks:", error);
+        return error
+       
       }
     };
 
@@ -54,6 +55,27 @@ const [taskAdded,setTaskAdded]=useState<boolean>(false)
       setTaskAdded(false)
     }
   }, [taskAdded]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        if (!import.meta.env.VITE_BACKEND_URL) {
+          console.error("Backend URL is missing!");
+          return;
+        }
+
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/streaming`);
+        const data = await response.json();
+       
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    fetchTasks();
+    
+    
+  }, []);
 
 
   
