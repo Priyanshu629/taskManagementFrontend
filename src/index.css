@@ -1,0 +1,36 @@
+@import "tailwindcss";
+header{
+   background: #ECEDEE;
+   box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+
+header input{
+  box-shadow: 0px 4px 4px 0px #00000040;
+  gap: 10px;
+}
+
+
+
+/* slider css */
+
+.category-slider {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.category-button {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(143, 219, 236);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.category-button.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
